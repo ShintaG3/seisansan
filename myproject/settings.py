@@ -6,11 +6,11 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'ir7fdjy#k+0elq^wc(bf^n9v1^-y=x+g6@25krh9ls_2&7mtyy'
 
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
@@ -61,9 +61,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    # 'default': dj_database_url.config(
+    #     default=config('DATABASE_URL')
+    # )
+    'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 
