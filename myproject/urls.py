@@ -1,9 +1,10 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from accounts import views as accounts_views
 from boards import views
+from chotatsu import views as chotatsu_views
 
 
 urlpatterns = [
@@ -11,6 +12,7 @@ urlpatterns = [
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
+    url(r'^chotatsu/$', chotatsu_views.chotatsu_list, name='chotatsu'),
 
     url(r'^reset/$',
         auth_views.PasswordResetView.as_view(

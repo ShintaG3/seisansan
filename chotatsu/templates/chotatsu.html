@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">Chotatsu</li>
+{% endblock %}
+
+
+{% block content %}
+<div class="mb-4">
+  <a href="{% url 'new_board' %}" class="btn btn-primary">New comment</a>
+</div>
+
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Project</th>
+        <th>Category1</th>
+        <th>Category2</th>
+        <th>Comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for comment in qs %}
+        <tr>
+          <td>
+            <a href="">{{ comment.project_name }}</a>
+            <!-- <small class="text-muted d-block"></small> -->
+          </td>
+          <td class="align-middle">
+            <a href="">{{ comment.first_category }}</a>
+          </td>
+          <td class="align-middle">
+            <a href="">{{ comment.second_category }}</a>
+          </td>
+          <td class="align-middle">
+            <a href="">{{ comment.comment }}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

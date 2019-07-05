@@ -26,6 +26,7 @@ INSTALLED_APPS = [
 
     'accounts',
     'boards',
+    'chotatsu',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,14 @@ DATABASES = {
     'ENGINE': 'django.db.backends.sqlite3',
     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'seisan',
+    #     'USER': 'Amy',
+    #     'PASSWORD': 'mamachan',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 
@@ -123,3 +132,14 @@ EMAIL_SUBJECT_PREFIX = '[Django Boards] '
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
+
+DEBUG = False
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(local())
