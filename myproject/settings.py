@@ -142,4 +142,4 @@ except ImportError:
 
 if not DEBUG:
     import django_heroku
-    django_heroku.settings(local())
+    django_heroku.settings(locals())
